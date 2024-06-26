@@ -32,7 +32,7 @@ async def get_content(url: str, content_type, **kwargs):
         sock_connect=10.0, sock_read=10.0
     )  # set a timeout of 10 seconds
     headers = {
-        "User-Agent": "curl/8.8.0"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
     }
     async with aiohttp.ClientSession(timeout=timeout, headers=headers, **kwargs) as session:
         try:

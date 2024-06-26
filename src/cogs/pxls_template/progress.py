@@ -268,7 +268,6 @@ class Progress(commands.Cog):
             virgin_abuse_percentage = 0
 
         embed = disnake.Embed(title="**Progress Check**", color=0x66C5CC)
-        embed.set_thumbnail(url="attachment://template_image.png")
         if display != "none":
             footer_text = f"Displaying: {[name for name,val in self.display_options.items() if val == display][0]}"
         else:
@@ -396,10 +395,9 @@ class Progress(commands.Cog):
         if display != "none":
             progress_file = await image_to_file(progress_image, f"{display}.png", embed)
             files.append(progress_file)
-        template_file = await image_to_file(
-            Image.fromarray(template.get_array()), "template_image.png"
-        )
-        files.append(template_file)
+        temp_image = Image.fromarray(template.get_array())
+        template_file_url = await imgur_app.upload_image(temp_image)
+        embed.set_thumbnail(url=template_file_url)
 
         embed_expanded = embed.copy()
         # this is necessary because embed.copy() keeps the same fields ..
